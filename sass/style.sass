@@ -42,22 +42,86 @@ table
   border-spacing: 0
 
 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600')
+
 /* ===Colors===*/
 $white-color: #ffffff
 $bg-color: #eeeeee
 $border-color: #d2d2d2
 
+$blog-bg: #ce483d
+$chrome-bg: #79302a
+$gmail-bg: #abcbd6
+$map-bg: #f8bd27
+$news-bg: #7bc1a1
+$search-bg: #5b97ff
+$youtube-bg: #2b2423
+$android-bg: #8eb021
+
+
+@mixin border-radius($radius)
+  border-radius: $radius
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  -ms-border-radius: $radius
+  -o-border-radius: $radius
+
+@mixin transition($transition)
+  -moz-transition:    $transition
+  -o-transition:      $transition
+  -webkit-transition: $transition
+  transition:         $transition
+
+
+@mixin transform($transform)
+  -webkit-transform:    $transform
+  -moz-transform:      $transform
+  -ms-transform: $transform
+  transform:         $transform
+
+@mixin transition-duration($duration)
+  -moz-transition-property:    $duration
+  -o-transition-property:      $duration
+  -webkit-transition-property: $duration
+  transition-property:         $duration
+
+@mixin transition-timing-function($timing)
+  -moz-transition-timing-function:    $timing
+  -o-transition-timing-function:      $timing
+  -webkit-transition-timing-function: $timing
+  transition-timing-function:         $timing
+
+@mixin transition-delay($delay)
+  -moz-transition-delay:    $delay
+  -o-transition-delay:      $delay
+  -webkit-transition-delay: $delay
+  transition-delay:         $delay
+
+
+
+
 body
   background-color: $bg-color
+  font-family: 'Open Sans', sans-serif
 
-img
+html,
+body,
+.wrap,
+.left-nav,
+.content
+  height: 100%
+  min-height: 100%
+
 
 
 .wrap
   width: 100%
+  overflow: hidden
   .left-nav
+    float: left
     width: 95px
-    height: 100%
+    overflow: hidden
+    background: $white-color
     border-right: 1px solid $border-color
     .navbar
       background: $white-color
@@ -71,8 +135,117 @@ img
             padding: 20px 0
             border-bottom: 1px solid $border-color
             a
+              outline: none
               padding: 0
               background-color: $white-color
               img
                 max-width: 32px
 
+
+  .content
+    margin-left: 95px
+    overflow: auto
+    padding-bottom: 20px
+    .box
+      width: 100%
+      margin-top: 20px
+      @include border-radius(4px)
+      figure
+        margin: 0
+        position: relative
+        overflow: hidden
+        text-align: center
+        img
+          max-width: 100%
+          display: inline-block
+          position: relative
+          @include transition(0.4s)
+        &:hover img
+          @include transform(translateY(-50px))
+        &:hover figcaption
+          opacity: 1
+          @include transform(translateY(0px))
+          -webkit-transition: -webkit-transform 0.4s, opacity 0.1s
+          -moz-transition: -moz-transform 0.4s, opacity 0.1s
+          transition: transform 0.4s, opacity 0.1s
+        figcaption
+          text-align: left
+          color: $white-color
+          background: rgba(255,255,255, 0.1)
+          padding: 15px
+          width: 100%
+          top: auto
+          bottom: 0
+          opacity: 0
+          @include transform(translateY(100%))
+          -webkit-backface-visibility: hidden
+          -moz-backface-visibility: hidden
+          backface-visibility: hidden
+          -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s
+          -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s
+          transition: transform 0.4s, opacity 0.1s 0.3s
+
+          h3
+            font-size: 16px
+            font-weight: 600
+          span
+            display: block
+            width: 100%
+            padding-top: 5px
+            font-size: 14px
+            line-height: 1.5
+
+
+
+
+
+
+
+.bloger-block
+  padding-top: 20px
+  background: $blog-bg
+  img
+    padding: 0 60px
+
+.chrome-block
+  padding-top: 60px
+  background: $chrome-bg
+  img
+    padding: 0 50px
+
+.gmail-block
+  padding-top: 60px
+  background: $gmail-bg
+  img
+    padding: 0 50px
+
+.map-block
+  padding-top: 60px
+  background: $map-bg
+  img
+    padding: 0 50px
+
+.news-block
+  padding-top: 60px
+  background: $news-bg
+  img
+    padding: 0 50px
+
+.search-block
+  padding-top: 60px
+  background: $search-bg
+  img
+    padding: 0 50px
+
+.youtube-block
+  padding-top: 60px
+  background: $youtube-bg
+  img
+    padding: 0 50px
+
+
+.android-block
+  padding-top: 60px
+  background: $android-bg
+  img
+    padding: 0 50px
