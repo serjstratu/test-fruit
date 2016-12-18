@@ -84,17 +84,30 @@ body {
     -webkit-column-gap: 20px;
     -moz-column-gap: 20px; }
     .wrap .content .box {
-      display: none;
+      position: relative;
       width: 100% !important;
       height: auto !important;
       margin-bottom: 20px;
+      -webkit-column-break-inside: avoid;
       border-radius: 4px;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
       -ms-border-radius: 4px;
-      -o-border-radius: 4px; }
+      -o-border-radius: 4px;
+      -webkit-transform: translateZ(0);
+      -moz-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      transform: translateZ(0);
+      transform-style: preserve-3d; }
+      .wrap .content .box:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1; }
       .wrap .content .box figure {
-        margin: 0;
         position: relative;
         overflow: hidden;
         text-align: center; }
@@ -106,6 +119,9 @@ body {
             top: 50px;
             display: inline-block;
             position: relative;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            backface-visibility: hidden;
             -moz-transition: 0.4s;
             -o-transition: 0.4s;
             -webkit-transition: 0.4s;
