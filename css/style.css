@@ -47,20 +47,12 @@ body {
   background-color: #eeeeee;
   font-family: "Open Sans", sans-serif; }
 
-html,
-body,
-.wrap,
-.left-nav,
-.content {
-  height: 100%;
-  min-height: 100%; }
-
 .wrap {
-  width: 100%;
-  overflow: hidden; }
+  width: 100%; }
   .wrap .left-nav {
     float: left;
     width: 95px;
+    height: 100%;
     overflow: hidden;
     background: #ffffff;
     border-right: 1px solid #d2d2d2; }
@@ -81,12 +73,20 @@ body,
             .wrap .left-nav .navbar .navbar-collapse .nav li a img {
               max-width: 32px; }
   .wrap .content {
-    margin-left: 95px;
-    overflow: auto;
-    padding-bottom: 20px; }
+    width: calc(100% - 95px);
+    padding: 20px 20px 0;
+    line-height: 0;
+    column-count: 5;
+    -webkit-column-count: 5;
+    -moz-column-count: 5;
+    -ms-column-count: 5;
+    column-gap: 20px;
+    -webkit-column-gap: 20px;
+    -moz-column-gap: 20px; }
     .wrap .content .box {
-      width: 100%;
-      margin-top: 20px;
+      width: 100% !important;
+      height: auto !important;
+      margin-bottom: 20px;
       border-radius: 4px;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
@@ -97,14 +97,18 @@ body,
         position: relative;
         overflow: hidden;
         text-align: center; }
-        .wrap .content .box figure img {
-          max-width: 100%;
-          display: inline-block;
-          position: relative;
-          -moz-transition: 0.4s;
-          -o-transition: 0.4s;
-          -webkit-transition: 0.4s;
-          transition: 0.4s; }
+        .wrap .content .box figure a {
+          display: block; }
+          .wrap .content .box figure a img {
+            padding: 0 60px;
+            max-width: 100%;
+            top: 50px;
+            display: inline-block;
+            position: relative;
+            -moz-transition: 0.4s;
+            -o-transition: 0.4s;
+            -webkit-transition: 0.4s;
+            transition: 0.4s; }
         .wrap .content .box figure:hover img {
           -webkit-transform: translateY(-50px);
           -moz-transform: translateY(-50px);
@@ -141,59 +145,77 @@ body,
           .wrap .content .box figure figcaption h3 {
             font-size: 16px;
             font-weight: 600; }
+            .wrap .content .box figure figcaption h3:after {
+              content: ">>";
+              padding-left: 5px;
+              font-size: 12px; }
           .wrap .content .box figure figcaption span {
             display: block;
             width: 100%;
-            padding-top: 5px;
+            padding-top: 15px;
             font-size: 14px;
-            line-height: 1.5; }
+            line-height: 1.25; }
 
 .bloger-block {
-  padding-top: 20px;
   background: #ce483d; }
-  .bloger-block img {
-    padding: 0 60px; }
 
 .chrome-block {
-  padding-top: 60px;
   background: #79302a; }
-  .chrome-block img {
-    padding: 0 50px; }
 
 .gmail-block {
-  padding-top: 60px;
   background: #abcbd6; }
-  .gmail-block img {
-    padding: 0 50px; }
 
 .map-block {
-  padding-top: 60px;
   background: #f8bd27; }
-  .map-block img {
-    padding: 0 50px; }
 
 .news-block {
-  padding-top: 60px;
   background: #7bc1a1; }
-  .news-block img {
-    padding: 0 50px; }
 
 .search-block {
-  padding-top: 60px;
   background: #5b97ff; }
-  .search-block img {
-    padding: 0 50px; }
 
 .youtube-block {
-  padding-top: 60px;
   background: #2b2423; }
-  .youtube-block img {
-    padding: 0 50px; }
 
 .android-block {
-  padding-top: 60px;
   background: #8eb021; }
-  .android-block img {
-    padding: 0 50px; }
+
+.music-block {
+  background: #ffd006; }
+
+.earth-block {
+  background: #101e55; }
+
+@media (max-width: 1440px) {
+  .wrap .content {
+    column-count: 4;
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    -ms-column-count: 4; } }
+@media (max-width: 1024px) {
+  .wrap .content {
+    column-count: 3;
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    -ms-column-count: 3; }
+    .wrap .content .box figure figcaption h3 {
+      font-size: 14px; }
+    .wrap .content .box figure figcaption span {
+      font-size: 12px; } }
+@media (max-width: 767px) {
+  .wrap .left-nav {
+    width: 70px; }
+  .wrap .content {
+    width: calc(100% - 70px);
+    column-count: 2;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    -ms-column-count: 2; } }
+@media (max-width: 640px) {
+  .wrap .content {
+    column-count: 1;
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    -ms-column-count: 1; } }
 
 /*# sourceMappingURL=style.css.map */

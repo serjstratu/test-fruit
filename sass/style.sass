@@ -57,7 +57,8 @@ $news-bg: #7bc1a1
 $search-bg: #5b97ff
 $youtube-bg: #2b2423
 $android-bg: #8eb021
-
+$music-bg: #ffd006
+$earth-bg: #101e55
 
 @mixin border-radius($radius)
   border-radius: $radius
@@ -65,6 +66,19 @@ $android-bg: #8eb021
   -moz-border-radius: $radius
   -ms-border-radius: $radius
   -o-border-radius: $radius
+
+@mixin column-count($count)
+  column-count:         $count
+  -webkit-column-count: $count
+  -moz-column-count:    $count
+  -ms-column-count:     $count
+
+
+@mixin column-gap($gap)
+  column-gap:           $gap
+  -webkit-column-gap:   $gap
+  -moz-column-gap:      $gap
+
 
 @mixin transition($transition)
   -moz-transition:    $transition
@@ -97,29 +111,20 @@ $android-bg: #8eb021
   -webkit-transition-delay: $delay
   transition-delay:         $delay
 
-
-
-
 body
   background-color: $bg-color
   font-family: 'Open Sans', sans-serif
 
-html,
-body,
-.wrap,
-.left-nav,
-.content
-  height: 100%
-  min-height: 100%
+
 
 
 
 .wrap
   width: 100%
-  overflow: hidden
   .left-nav
     float: left
     width: 95px
+    height: 100%
     overflow: hidden
     background: $white-color
     border-right: 1px solid $border-color
@@ -143,23 +148,30 @@ body,
 
 
   .content
-    margin-left: 95px
-    overflow: auto
-    padding-bottom: 20px
+    width: calc(100% - 95px)
+    padding: 20px 20px 0
+    line-height: 0
+    @include column-count(5)
+    @include column-gap(20px)
     .box
-      width: 100%
-      margin-top: 20px
+      width: 100% !important
+      height: auto !important
+      margin-bottom: 20px
       @include border-radius(4px)
       figure
         margin: 0
         position: relative
         overflow: hidden
         text-align: center
-        img
-          max-width: 100%
-          display: inline-block
-          position: relative
-          @include transition(0.4s)
+        a
+          display: block
+          img
+            padding: 0 60px
+            max-width: 100%
+            top: 50px
+            display: inline-block
+            position: relative
+            @include transition(0.4s)
         &:hover img
           @include transform(translateY(-50px))
         &:hover figcaption
@@ -188,12 +200,17 @@ body,
           h3
             font-size: 16px
             font-weight: 600
+            &:after
+              content: '>>'
+              padding-left: 5px
+              font-size: 12px
+
           span
             display: block
             width: 100%
-            padding-top: 5px
+            padding-top: 15px
             font-size: 14px
-            line-height: 1.5
+            line-height: 1.25
 
 
 
@@ -202,50 +219,71 @@ body,
 
 
 .bloger-block
-  padding-top: 20px
   background: $blog-bg
-  img
-    padding: 0 60px
 
 .chrome-block
-  padding-top: 60px
   background: $chrome-bg
-  img
-    padding: 0 50px
 
 .gmail-block
-  padding-top: 60px
   background: $gmail-bg
-  img
-    padding: 0 50px
 
 .map-block
-  padding-top: 60px
   background: $map-bg
-  img
-    padding: 0 50px
 
 .news-block
-  padding-top: 60px
   background: $news-bg
-  img
-    padding: 0 50px
+
 
 .search-block
-  padding-top: 60px
   background: $search-bg
-  img
-    padding: 0 50px
+
 
 .youtube-block
-  padding-top: 60px
   background: $youtube-bg
-  img
-    padding: 0 50px
 
 
 .android-block
-  padding-top: 60px
   background: $android-bg
-  img
-    padding: 0 50px
+
+
+.music-block
+  background: $music-bg
+
+
+.earth-block
+  background: $earth-bg
+
+$breakpoint-desktop: 1440px
+$breakpoint-tablet: 1024px
+$breakpoint-small-tablet: 767px
+$breakpoint-mobile: 640px
+
+@media (max-width: $breakpoint-desktop)
+  .wrap
+    .content
+      @include column-count(4)
+
+@media (max-width: $breakpoint-tablet)
+  .wrap
+    .content
+      @include column-count(3)
+      .box
+        figure
+          figcaption
+            h3
+              font-size: 14px
+            span
+              font-size: 12px
+
+@media (max-width: $breakpoint-small-tablet)
+  .wrap
+    .left-nav
+      width: 70px
+    .content
+      width: calc(100% - 70px)
+      @include column-count(2)
+
+@media (max-width: $breakpoint-mobile)
+  .wrap
+    .content
+      @include column-count(1)
