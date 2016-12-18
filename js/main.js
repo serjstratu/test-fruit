@@ -1,15 +1,40 @@
-$( document ).ready(function() {
-    var heights = $(".wrap").map(function() {
-            return $(this).height();
-        }).get(),
+$( window ).load(function() {
+    let link = $(".left-nav li.active a").data("id");
+    console.log(link);
 
-        maxHeight = Math.max.apply(null, heights);
-
-    $(".wrap").height(maxHeight);
+    var activeBox = $('.box').filter(function() {
+        return $(this).data("category") == link;
+    });
+    console.log(activeBox)
+    $(activeBox).show();
 });
 
 
-$(".left-nav").on("click", "a", function(e){
+
+// $( document ).ready(function() {
+//     var heights = $(".wrap").map(function() {
+//             return $(this).height();
+//         }).get(),
+//
+//         maxHeight = Math.max.apply(null, heights);
+//
+//     $(".left-nav").height(maxHeight);
+// });
+
+
+
+$(".left-nav li").on("click", "a", function(e){
     e.preventDefault();
-    console.log("click a");
+    $(this).parent().addClass('active').siblings().removeClass('active');
+
+    var linkId = $(this).data("id");
+
+    console.log(linkId);
+    $('.box').each(function(element){
+        if($(this).data("category")== linkId){
+            $(this).show();
+        }else{
+            $(this).hide();
+        }
+    });
 });
